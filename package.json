@@ -25,6 +25,7 @@
     "nodemailer": "^6.9.5",
     "otp-generator": "^4.0.1",
     "path": "^0.12.7",
+    "react-switch": "^7.0.0",
     "stripe": "^13.9.0",
     "twilio": "^4.16.0",
     "uuid": "^9.0.0",

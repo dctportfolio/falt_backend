@@ -21,7 +21,7 @@ employeeCltr.create = async (req, res) => {
                 let to = employeeDoc.email, subject = 'Login Credentials'
                 let text = `Welcome ${employeeDoc.name}
                 Email:- ${employeeDoc.email}
-                Password:- ${employeeDoc.password}`
+                Password:- ${body.password}`
                 sendMail(to, subject, text)
                 res.json(employeeDoc)
             }

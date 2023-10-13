@@ -26,7 +26,7 @@ paymentsCltr.checkOut = async (req,res)=>{
             line_items:lineitems,
             mode:'payment',
             success_url: 'http://localhost:3000/pricing',
-            cancel_url: 'http://localhost:3000/cancel'
+            cancel_url: 'http://localhost:3000/pricing'
         })
         console.log(session)
         res.json({

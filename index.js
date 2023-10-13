@@ -24,7 +24,7 @@ configureDb()
 const port = 4455
 
 // <-------------------- Login ------------------->
-app.post('/api/user/login', verifyUser, loginCltr.login)
+app.post('/api/user/login', loginCltr.login)
 app.post('/api/user/verify-login', authenticateUser, loginCltr.verifyLogin)
 app.put('/api/user/reset-password', authenticateUser, loginCltr.resetPassword)
 app.put('/api/user/forgot-password',  loginCltr.forgotPassword)
