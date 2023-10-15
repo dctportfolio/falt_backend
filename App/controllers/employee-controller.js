@@ -15,13 +15,14 @@ employeeCltr.create = async (req, res) => {
             const employee = new Employee(body)
             employee.password = hashedPassword
             employee.company = req.user.company
-            employee.subscriptionEndDate = new Date(endDate.setDate(endDate.getDate() + 1))
+            employee.subscriptionEndDate = new Date(endDate.setDate(endDate.getDate() + 14))
             const employeeDoc = await employee.save()
             if(employeeDoc) {
                 let to = employeeDoc.email, subject = 'Login Credentials'
                 let text = `Welcome ${employeeDoc.name}
                 Email:- ${employeeDoc.email}
                 Password:- ${body.password}`
+                
                 sendMail(to, subject, text)
                 res.json(employeeDoc)
             }
@@ -35,7 +36,7 @@ employeeCltr.create = async (req, res) => {
 
 employeeCltr.showEmployees = async (req, res) => {
     try {
-        const employees = await Employee.find().populate('company')
+        const employees = await Employee.find().populate('company owner')
         res.json(employees)
     } catch(e) {
         res.json(e)
@@ -66,7 +67,6 @@ employeeCltr.update = async (req, res) => {
 employeeCltr.remove = async (req, res) => {
     try {
         const id = req.params.id
-        console.log(id)
         const employee = await Employee.findByIdAndDelete(id)
         res.json(employee)
     } catch(e) {

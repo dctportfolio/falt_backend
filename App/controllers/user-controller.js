@@ -55,6 +55,15 @@ userCltr.account = async (req, res) => {
         res.json(e)
     }
 }
+userCltr.update = async (req, res) => {
+    try{
+        const {username, email, mobile, password, role} = body = req.body
+        const user = await User.findOneAndUpdate({_id: req.user.id}, body, {runValidators: true, new: true})
+        res.json(pick(user, ['id', 'username', 'email', 'mobile']))
+    } catch(e) {
+        res.json(e)
+    }
+}
 
 userCltr.company = async (req, res) => {
     try{
@@ -68,7 +77,7 @@ userCltr.company = async (req, res) => {
 userCltr.updateCompanyDetails = async (req, res) => {
     try {
         const body = req.body
-        const company = await Company.findByIdAndUpdate(req.user.company, body, {runValidators: true, new: true})
+        const company = await Company.findOneAndUpdate({_id: req.user.company}, body, {runValidators: true, new: true})
         res.json(company)
     } catch(e) {
         res.json(e)

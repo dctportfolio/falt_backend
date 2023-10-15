@@ -36,6 +36,10 @@ app.get('/api/user/account', authenticateUser, (req, res, next) => {
     req.permittedRoles = ['admin']
     next()
 }, authorizeUser, userCltr.account)
+app.put('/api/user/update', authenticateUser, (req, res, next) => {
+    req.permittedRoles = ['admin']
+    next()
+}, authorizeUser, userCltr.update)
 app.get('/api/user/company', authenticateUser, (req, res, next) => {
     req.permittedRoles = ['admin', 'manager', 'fieldAgent']
     next()
@@ -66,7 +70,7 @@ app.get('/api/employee/:id', authenticateUser, (req, res, next) => {
     next()
 }, authorizeUser, employeeCltr.showEmployee)
 app.put('/api/employee-update/:id', authenticateUser, (req, res, next) => {
-    req.permittedRoles = ['admin', 'manager', 'fieldAgent']
+    req.permittedRoles = ['admin', 'manager']
     next()
 }, authorizeUser, employeeCltr.update)
 app.put('/api/employee-share-location', authenticateUser, (req, res, next) => {
