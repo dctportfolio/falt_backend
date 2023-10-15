@@ -36,7 +36,7 @@ employeeCltr.create = async (req, res) => {
 
 employeeCltr.showEmployees = async (req, res) => {
     try {
-        const employees = await Employee.find().populate('company owner')
+        const employees = await Employee.find().populate('company')
         res.json(employees)
     } catch(e) {
         res.json(e)
