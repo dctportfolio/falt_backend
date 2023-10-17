@@ -18,7 +18,7 @@ tasksCltr.create = async (req, res) => {
 
 tasksCltr.showTasks = async (req, res) => {
     try {
-        const tasks = await Tasks.find().populate('client assignedTo company assignedBy')
+        const tasks = await Tasks.find().populate('client assignedTo company')
         res.json(tasks)
     } catch(e){
         res.json(e)
